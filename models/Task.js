@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
+const createDeadline = require("../utils/helpers");
 
 class Task extends Model {}
 
@@ -27,7 +28,7 @@ Task.init(
   {
     hooks: {
       beforeCreate: (newTaskData) => {
-        newTaskData.deadline = new Date().createDeadline();
+        newTaskData.deadline = new Date().createDeadline;
         return newTaskData;
       },
     },
