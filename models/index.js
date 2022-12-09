@@ -18,4 +18,8 @@ Comment.belongsTo(Task, {
   foreignKey: "task_id",
 });
 
+Comment.belongsTo(User, {
+  foreignKey: "user_id",
+});
+
 module.exports = { User, Task, Comment };
