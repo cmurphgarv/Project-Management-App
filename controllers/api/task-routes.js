@@ -17,26 +17,16 @@ router.get("/:id", (req, res) => {
   });
 });
 
-//I got to here, the post route for this needs updated/fixed.
 router.post("/", (req, res) => {
-  Task.create(req.body)
-    .then((task) => {
-      if (req.body.taskId.length) {
-        const productTagIdArr = req.body.tagIds.map((tag_id) => {
-          return {
-            product_id: product.id,
-            tag_id,
-          };
-        });
-        return ProductTag.bulkCreate(productTagIdArr);
-      }
-      // if no product tags, just respond
-      res.status(200).json(product);
+  // create a new task
+  Task.create({
+    id: req.body.id,
+  })
+    .then((newTask) => {
+      res.json(newTask);
     })
-    .then((productTagIds) => res.status(200).json(productTagIds))
     .catch((err) => {
-      console.log(err);
-      res.status(400).json(err);
+      res.json(err);
     });
 });
 
