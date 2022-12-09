@@ -1,7 +1,5 @@
 const router = require("express").Router();
-const User = require("../../models/User");
-const Task = require("../../models/Task");
-const Comment = require("../../models/Comment");
+const { Task, Comment, User } = require("../../models");
 
 // route: api/comment
 
@@ -9,9 +7,7 @@ const Comment = require("../../models/Comment");
 router.get("/", async (req, res) => {
   try {
     const commentData = await Comment.findAll({
-      include: {
-        model: Task,
-      },
+      include: [{ model: Task }, { model: User }],
     });
 
     res.status(200).json(commentData);
@@ -24,9 +20,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const commentData = await Comment.findByPk(req.params.id, {
-      include: {
-        model: Task,
-      },
+      include: [{ model: Task }, { model: User }],
     });
 
     if (!commentData) {
@@ -49,3 +43,5 @@ router.post("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+module.exports = router;

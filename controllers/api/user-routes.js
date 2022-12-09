@@ -1,12 +1,11 @@
 const router = require("express").Router();
-const User = require("../../models/User");
-const Task = require("../../models/Task");
+const { User, Task, Comment } = require("../../models");
 
 // GET all users
 router.get("/", async (req, res) => {
   try {
     const userData = await User.findAll({
-      include: [{ model: Task }],
+      include: [{ model: Task }, { model: Comment }],
     });
     res.status(200).json(userData);
   } catch (err) {
@@ -19,7 +18,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const userData = await User.findByPk(req.params.id, {
-      include: [{ model: Task }],
+      include: [{ model: Task }, { model: Comment }],
     });
 
     if (!userData) {
