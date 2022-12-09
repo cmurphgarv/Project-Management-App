@@ -1,39 +1,40 @@
-const router = require('express').Router();
-const User = require('../models/User');
-const Task = require('../models/Task');
+const router = require("express").Router();
+const User = require("../../models/User");
+const Task = require("../../models/Task");
 
 // GET all users
-router.get('/', async (req, res) => {
-    try {
-      const userData = await User.findAll({
-        include: [{ model: Task }],
-      });
-      res.status(200).json(userData);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+router.get("/", async (req, res) => {
+  try {
+    const userData = await User.findAll({
+      include: [{ model: Task }],
+    });
+    res.status(200).json(userData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // GET one user by ID
-router.get('/:id', async (req, res) => {
-    try {
-      const userData = await User.findByPk(req.params.id, {
-        include: [{ model: Task }],
-      });
-  
-      if (!userData) {
-        res.status(404).json({ message: 'No user found with that id!' });
-        return;
-      }
-  
-      res.status(200).json(userData);
-    } catch (err) {
-      res.status(500).json(err);
+router.get("/:id", async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.params.id, {
+      include: [{ model: Task }],
+    });
+
+    if (!userData) {
+      res.status(404).json({ message: "No user found with that id!" });
+      return;
     }
-  });
+
+    res.status(200).json(userData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // CREATE new user
-router.post('/', async (req, res) => {
+
+router.post("/", async (req, res) => {
   try {
     const dbUserData = await User.create({
       username: req.body.username,
@@ -54,7 +55,7 @@ router.post('/', async (req, res) => {
 });
 
 // Login
-router.post('/login', async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const dbUserData = await User.findOne({
       where: {
@@ -65,7 +66,7 @@ router.post('/login', async (req, res) => {
     if (!dbUserData) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password. Please try again!' });
+        .json({ message: "Incorrect email or password. Please try again!" });
       return;
     }
 
@@ -74,7 +75,7 @@ router.post('/login', async (req, res) => {
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password. Please try again!' });
+        .json({ message: "Incorrect email or password. Please try again!" });
       return;
     }
 
@@ -84,7 +85,7 @@ router.post('/login', async (req, res) => {
 
       res
         .status(200)
-        .json({ user: dbUserData, message: 'You are now logged in!' });
+        .json({ user: dbUserData, message: "You are now logged in!" });
     });
   } catch (err) {
     console.log(err);
@@ -93,7 +94,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Logout
-router.post('/logout', (req, res) => {
+router.post("/logout", (req, res) => {
   // When the user logs out, destroy the session
   if (req.session.loggedIn) {
     req.session.destroy(() => {
@@ -103,6 +104,5 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
-  
-  
-  module.exports = router;
+
+module.exports = router;
