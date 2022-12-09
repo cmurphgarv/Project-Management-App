@@ -6,6 +6,10 @@ User.hasMany(Task, {
   foreignKey: "user_id",
 });
 
+User.hasMany(Comment, {
+  foreignKey: "user_id",
+});
+
 Task.belongsTo(User, {
   foreignKey: "user_id",
 });
@@ -16,6 +20,10 @@ Task.hasMany(Comment, {
 
 Comment.belongsTo(Task, {
   foreignKey: "task_id",
+});
+
+Comment.belongsTo(User, {
+  foreignKey: "user_id",
 });
 
 module.exports = { User, Task, Comment };
