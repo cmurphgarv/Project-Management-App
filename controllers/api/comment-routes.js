@@ -45,5 +45,7 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const commentData = await Comment.create(req.body);
-  } catch {}
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
