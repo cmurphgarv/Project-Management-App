@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const sess = {
-  secret: "secret-key",
+  secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: false,
 };
