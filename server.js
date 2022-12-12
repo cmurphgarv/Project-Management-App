@@ -11,7 +11,15 @@ const helpers = require("./utils/helpers");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+const sess = {
+  secret: "secret-key",
+  resave: false,
+  saveUninitialized: false,
+};
+
 // Middleware
+
+app.use(session(sess));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
