@@ -12,6 +12,18 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
+const sess = {
+  secret: process.env.SESSION_SECRET,
+  cookie: {
+    // Stored in milliseconds
+    maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
+  },
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
+};
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
