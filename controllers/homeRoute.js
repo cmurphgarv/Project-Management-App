@@ -6,7 +6,7 @@ router.get("/", async (req, res) => {
   try {
     const dbTaskData = await Task.findAll({});
 
-    const tasks = dbTaskData.map((Task) => Task.get({ plain: true }));
+    const tasks = dbTaskData.map((task) => task.get({ plain: true }));
 
     res.render("homepage", {
       tasks,
@@ -34,7 +34,7 @@ router.get("/task/:id", async (req, res) => {
           },
         ],
       });
-      const Task = dbTaskData.get({ plain: true });
+      const task = dbTaskData.get({ plain: true });
       res.render("task", { task, loggedIn: req.session.loggedIn });
     } catch (err) {
       console.log(err);
