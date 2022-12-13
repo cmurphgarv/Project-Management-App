@@ -43,6 +43,7 @@ router.post("/", async (req, res) => {
       user_id: req.body.user_id,
       task_id: req.body.task_id
     });
+    res.status(200).json(commentData)
   } catch (err) {
     res.status(500).json(err);
   }
