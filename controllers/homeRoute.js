@@ -3,18 +3,22 @@ const { Task, Comment } = require("../models");
 
 // GET all tasks for homepage
 router.get("/", async (req, res) => {
-  try {
-    const dbTaskData = await Task.findAll({});
+  if (!req.session.loggedIn) {
+    res.redirect("/login");
+  } else {
+    try {
+      const dbTaskData = await Task.findAll({});
 
-    const tasks = dbTaskData.map((task) => task.get({ plain: true }));
+      const tasks = dbTaskData.map((task) => task.get({ plain: true }));
 
-    res.render("homepage", {
-      tasks,
-      loggedIn: req.session.loggedIn,
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+      res.render("homepage", {
+        tasks,
+        loggedIn: req.session.loggedIn,
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
   }
 });
 
