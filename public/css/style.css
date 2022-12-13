@@ -1,16 +1,16 @@
 :root {
-  --primary: #030399;
-  --secondary: #380999;
-  --tertiary: #340125;
+  --primary: #ffd755;
+  --secondary: #f5b78e;
+  --tertiary: #57402a;
   --quatrinary: #6c6b67;
-  --light: #f1f58e;
-  --dark: #f9f901;
+  --light: #d67e43;
+  --dark: #71561c;
   --error: rgb(228, 46, 1);
   --border-radius: 0.3rem;
 }
 
 body {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "OCR A Std", monospace;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -20,18 +20,18 @@ body {
 }
 
 a {
-  color: #030399;
+  color: var(--secondary);
   text-decoration: none;
 }
 
 a:visited {
-  color: inherit;
+  color: var(--dark);
 }
 
 header {
   padding: 40px;
   text-align: center;
-  background: #380999;
+  background: var(--primary);
   color: var(--light);
 }
 
@@ -43,7 +43,7 @@ main {
 
 aside {
   flex: 0;
-  background-color: #380999;
+  background-color: var(--primary);
   padding: 80px;
   text-align: left;
   color: var(--light);
@@ -68,7 +68,8 @@ nav a:hover {
 
 .gallery {
   flex: 4;
-  background-color: #fff;
+  background-color: #e7d7a4;
+  background-image: url("/images/projectmanagementbg.jpg");
   padding: 50px;
   display: flex;
   flex-flow: row wrap;
@@ -77,9 +78,9 @@ nav a:hover {
 }
 
 .btn-no-style {
-  background: none;
+  background-color: var(--primary);
   border: none;
-  padding: 0;
+  padding: 10;
   cursor: pointer;
   text-decoration: none;
   font-size: 100%;
@@ -124,8 +125,8 @@ img {
   border-radius: var(--border-radius);
   border-style: double;
   border-width: thick;
-  background-color: #577a7c;
-  color: var(--light);
+  background-color: var(--light);
+  color: var(--primary);
 }
 
 .card header {

@@ -1,9 +1,10 @@
-{{#if loggedIn}}
-  <section class="painting">
-    <div class="painting-details">
-      <h3>{{comment.content}}</h3>
-    </div>
+<section class="container">
+  <h3 class="gallery-name">{{comment.content}}</h3>
+  {{#if loggedIn}}
+  <section class="flex-row justify-center">
+    {{> comment-details}}
   </section>
+</section>
 {{else}}
-  <a href="/login">You must login first to view this page</a>
+<a href="/login">You must login first to view this page</a>
 {{/if}}
