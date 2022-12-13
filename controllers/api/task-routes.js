@@ -33,13 +33,15 @@ router.get("/:id", async (req, res) => {
 });
 
 // CREATE new task
-
 router.post("/", async (req, res) => {
   try {
     const dbTaskData = await Task.create({
       title: req.body.title,
+      description: req.body.description,
+      deadline: req.body.deadline,
       user_id: req.body.user_id,
     });
+    res.status(200).json(dbTaskData);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
