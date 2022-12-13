@@ -4,14 +4,7 @@ const { Task, Comment } = require("../models");
 // GET all tasks for homepage
 router.get("/", async (req, res) => {
   try {
-    const dbTaskData = await Task.findAll({
-      include: [
-        {
-          model: Task,
-          attributes: ["title", "description"],
-        },
-      ],
-    });
+    const dbTaskData = await Task.findAll({});
 
     const tasks = dbTaskData.map((Task) => Task.get({ plain: true }));
 

@@ -11,7 +11,6 @@ const helpers = require("./utils/helpers");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-
 // Middleware
 const sess = {
   secret: process.env.SESSION_SECRET,
