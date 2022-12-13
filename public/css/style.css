@@ -1,16 +1,16 @@
 :root {
-  --primary: #3d5852;
-  --secondary: #86938f;
-  --tertiary: #5e877f;
+  --primary: #030399;
+  --secondary: #380999;
+  --tertiary: #340125;
   --quatrinary: #6c6b67;
-  --light: #e3e4e3;
-  --dark: #182c23;
+  --light: #f1f58e;
+  --dark: #f9f901;
   --error: rgb(228, 46, 1);
   --border-radius: 0.3rem;
 }
 
 body {
-  font-family: Arial;
+  font-family: "Courier New", Courier, monospace;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@ body {
 }
 
 a {
-  color: var(--dark);
+  color: #030399;
   text-decoration: none;
 }
 
@@ -31,7 +31,7 @@ a:visited {
 header {
   padding: 40px;
   text-align: center;
-  background: var(--primary);
+  background: #380999;
   color: var(--light);
 }
 
@@ -43,7 +43,7 @@ main {
 
 aside {
   flex: 0;
-  background-color: var(--tertiary);
+  background-color: #380999;
   padding: 80px;
   text-align: left;
   color: var(--light);

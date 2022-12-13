@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 
     const tasks = dbTaskData.map((Task) => Task.get({ plain: true }));
 
-    res.render("homepage", {
+    res.render("main", {
       tasks,
       loggedIn: req.session.loggedIn,
     });
