@@ -41,6 +41,7 @@ router.post("/", async (req, res) => {
       deadline: req.body.deadline,
       user_id: req.body.user_id,
     });
+    res.status(200).json(dbTaskData);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
