@@ -21,6 +21,10 @@ router.post("/", (req, res) => {
   // create a new task
   Task.create({
     id: req.body.id,
+    title: req.body.title,
+    description: req.body.description,
+    deadline: req.body.deadline,
+    user_id: req.body.user_id
   })
     .then((newTask) => {
       res.json(newTask);
