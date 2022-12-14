@@ -2,15 +2,21 @@
   --primary: #ffd755;
   --secondary: #f5b78e;
   --tertiary: #57402a;
-  --quatrinary: #6c6b67;
+  --quatrinary: #d3502f;
   --light: #d67e43;
   --dark: #71561c;
   --error: rgb(228, 46, 1);
   --border-radius: 0.3rem;
 }
-
+header,
+nav,
+aside {
+  font-family: "Amatic SC";
+  font-size: 150%;
+}
 body {
-  font-family: "OCR A Std", monospace;
+  font-family: "Shadows Into Light";
+  font-weight: bold;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -20,21 +26,26 @@ body {
 }
 
 a {
-  color: var(--secondary);
+  color: var(--dark);
   text-decoration: none;
 }
 
-a:visited {
-  color: var(--dark);
+a:hover {
+  color: var(--primary);
+  text-decoration: none;
 }
 
 header {
-  padding: 40px;
+  font-family: "Amatic SC";
+  padding: 0px;
   text-align: center;
   background: var(--primary);
   color: var(--light);
 }
-
+h1 {
+  font-family: "Amatic SC";
+  font-size: 250%;
+}
 main {
   display: flex;
   flex-wrap: wrap;
@@ -44,7 +55,7 @@ main {
 aside {
   flex: 0;
   background-color: var(--primary);
-  padding: 80px;
+  padding: 70px;
   text-align: left;
   color: var(--light);
 }
@@ -114,6 +125,7 @@ img {
   border-radius: 10px;
   background-color: var(--light);
   color: var(--dark);
+  padding: 5px;
 }
 
 .login-card {
@@ -162,4 +174,15 @@ img {
   flex-flow: column wrap;
   align-content: flex-start;
   align-items: center;
+}
+
+input[type="password"],
+input[type="text"],
+textarea {
+  background-image: url("../images/projectmanagementbg.jpg");
+}
+
+#commentbox {
+  width: 400px;
+  height: 100px;
 }
