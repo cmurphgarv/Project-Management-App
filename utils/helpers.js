@@ -1,8 +1,12 @@
+const moment = require("moment");
+
 module.exports = {
   
-  addDays: (date, days) => {
-    let dateCopy= new Date(Number(date));
-    dateCopy.setDate(date.getDate() + days);
-    return dateCopy
+  addDays: (date) => {
+    let dateCopy = moment(date);
+    //console.log(dateCopy);
+    dateCopy = moment(dateCopy).format("MMM Do YY");
+    //console.log(dateCopy);
+    return dateCopy;
   }
 };

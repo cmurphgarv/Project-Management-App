@@ -1,5 +1,7 @@
 const router = require("express").Router();
-const { Task, Comment, User } = require("../models");
+const { Task, Comment } = require("../models");
+const moment = require("moment");
+
 
 // GET all tasks for homepage
 router.get("/", async (req, res) => {
@@ -14,8 +16,8 @@ router.get("/", async (req, res) => {
         },
       });
 
-      const tasks = dbTaskData.map((task) => task.get({ plain: true }));
-
+      let tasks = dbTaskData.map((task) => task.get({ plain: true }));
+      tasks = tasks.map((task) => {task.deadline = moment(task.deadline).format("MMM Do YY"); return task});
       res.render("homepage", {
         tasks,
         loggedIn: req.session.loggedIn,
@@ -58,13 +60,13 @@ router.get("/comment/:id", async (req, res) => {
   if (!req.session.loggedIn) {
     res.redirect("/login");
   } else {
-    // If the user is logged in, allow them to view the painting
+    // If the user is logged in, allow them to view the comment
     try {
       const dbCommentData = await Comment.findByPk(req.params.id);
 
       const comment = dbCommentData.get({ plain: true });
 
-      res.render("comment", { comment, loggedIn: req.session.loggedIn });
+      res.render("comment", { comment, loggedIn: req.session.loggedIn, user_id: req.session.user_id, task_id: comment.task_id});
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
