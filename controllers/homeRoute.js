@@ -102,11 +102,12 @@ router.get("/login", (req, res) => {
 
 router.get("/logout", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect("/");
-    return;
+    req.session.destroy(() => {
+      res.render("login");
+    });
+  } else {
+    res.status(404).end();
   }
-
-  res.render("login");
 });
 
 module.exports = router;
