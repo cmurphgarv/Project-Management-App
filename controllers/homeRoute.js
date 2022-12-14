@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Task, Comment } = require("../models");
+const { Task, Comment, User } = require("../models");
 
 // GET all tasks for homepage
 router.get("/", async (req, res) => {
@@ -7,7 +7,12 @@ router.get("/", async (req, res) => {
     res.redirect("/login");
   } else {
     try {
-      const dbTaskData = await Task.findAll({});
+      const dbTaskData = await Task.findAll({
+        include: { model: User },
+        where: {
+          user_id: req.session.user_id,
+        },
+      });
 
       const tasks = dbTaskData.map((task) => task.get({ plain: true }));
 
