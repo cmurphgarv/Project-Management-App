@@ -166,3 +166,7 @@ img {
   align-content: flex-start;
   align-items: center;
 }
+
+textarea {
+  width: 500px;
+}
