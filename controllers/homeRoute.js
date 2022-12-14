@@ -1,5 +1,7 @@
 const router = require("express").Router();
-const { Task, Comment, User } = require("../models");
+const { Task, Comment } = require("../models");
+const moment = require("moment");
+
 
 // GET all tasks for homepage
 router.get("/", async (req, res) => {
@@ -14,8 +16,8 @@ router.get("/", async (req, res) => {
         },
       });
 
-      const tasks = dbTaskData.map((task) => task.get({ plain: true }));
-
+      let tasks = dbTaskData.map((task) => task.get({ plain: true }));
+      tasks = tasks.map((task) => {task.deadline = moment(task.deadline).format("MMM Do YY"); return task});
       res.render("homepage", {
         tasks,
         loggedIn: req.session.loggedIn,
