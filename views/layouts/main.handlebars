@@ -4,18 +4,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project Management</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Shadows+Into+Light"
+    />
     <link rel="stylesheet" type="text/css" href="/css/jass.css" />
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
   </head>
 
   <body>
     <header>
-      <h1>Let's Keep Track - Project Management</h1>
+      <h1>Let's Keep Track <br /> Project Management</h1>
     </header>
     <nav>
       <a href="/">Home</a>
       {{#if loggedIn}}
-        <button id="logout" class="btn-no-style">Logout</button>
+        <a href="/logout" id="logout">Logout</a>
       {{else}}
         <a href="/login">Login</a>
       {{/if}}
@@ -23,7 +27,7 @@
     <main>
       <aside>
         <img src="/images/projectmanagement.png" />
-        <h2>Keep Track</h2>
+        <h2>Let's Keep Track</h2>
       </aside>
       <div class="gallery">
         {{{body}}}
