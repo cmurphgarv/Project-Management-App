@@ -1,12 +1,19 @@
 <section class="container">
   {{#if loggedIn}}
   <section class="card">
-  <p><h1>Comment #{{comment.id}}</h1></p>
-  <section class="flex-row justify-center">
+  
+  <section class="flex-column justify-center">
+    {{#each comments as |comment|}}
     {{> comment-details}}
+    {{/each}}
+    <p>
+    <textarea id="commentBox" data-user-id="{{user_id}}" data-task-id="{{task_id}}"></textarea>
+    <button class="btn-no-style commentBtn">Add comment</button>
+    </p>
   </section></section>
   
 </section>
 {{else}}
 <a href="/login">You must login first to view this page</a>
 {{/if}}
+<script src="/js/comment.js"></script>

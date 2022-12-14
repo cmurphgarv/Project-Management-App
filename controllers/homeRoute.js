@@ -1,7 +1,6 @@
 const router = require("express").Router();
-const { Task, Comment } = require("../models");
+const { Task, Comment, User } = require("../models");
 const moment = require("moment");
-
 
 // GET all tasks for homepage
 router.get("/", async (req, res) => {
@@ -17,7 +16,10 @@ router.get("/", async (req, res) => {
       });
 
       let tasks = dbTaskData.map((task) => task.get({ plain: true }));
-      tasks = tasks.map((task) => {task.deadline = moment(task.deadline).format("MMM Do YY"); return task});
+      tasks = tasks.map((task) => {
+        task.deadline = moment(task.deadline).format("MMM Do YY");
+        return task;
+      });
       res.render("homepage", {
         tasks,
         loggedIn: req.session.loggedIn,
@@ -54,7 +56,8 @@ router.get("/task/:id", async (req, res) => {
   }
 });
 
-// GET one comment
+// Get all comments with associated task
+
 router.get("/comment/:id", async (req, res) => {
   // If the user is not logged in, redirect the user to the login page
   if (!req.session.loggedIn) {
@@ -63,10 +66,24 @@ router.get("/comment/:id", async (req, res) => {
     // If the user is logged in, allow them to view the comment
     try {
       const dbCommentData = await Comment.findByPk(req.params.id);
-
       const comment = dbCommentData.get({ plain: true });
 
-      res.render("comment", { comment, loggedIn: req.session.loggedIn, user_id: req.session.user_id, task_id: comment.task_id});
+      const dbAllCommentsData = await Comment.findAll({
+        where: {
+          task_id: comment.task_id,
+        },
+      });
+
+      const comments = dbAllCommentsData.map((comment) =>
+        comment.get({ plain: true })
+      );
+
+      res.render("comment", {
+        comments,
+        loggedIn: req.session.loggedIn,
+        user_id: req.session.user_id,
+        task_id: comment.task_id,
+      });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
