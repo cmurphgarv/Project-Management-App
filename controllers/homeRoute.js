@@ -76,6 +76,7 @@ router.get("/comment/:id", async (req, res) => {
         where: {
           task_id: comment.task_id,
         },
+        include: [{ model: User }],
       });
 
       const comments = dbAllCommentsData.map((comment) =>

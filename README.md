@@ -11,7 +11,7 @@ Online project management application where individual tasks are viewed by the u
 
 ## Usage
 
-An interactive to-do list for employees or individuals sharing a project to manage different tasks which need to be completed and provide updates and feedback on each task. 
+An interactive to-do list for employees or individuals sharing a project to manage different tasks which need to be completed and provide updates and feedback on each task.
 
 ## Installation
 
@@ -25,3 +25,5 @@ npm start
 None
 
 ## Deployed Page Link
+
+https://project-management-2022-but.herokuapp.com/
