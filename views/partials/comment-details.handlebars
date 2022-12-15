@@ -2,6 +2,8 @@
   <p><h1>Comment #{{id}}</h1></p>
   <p>{{content}}</p>
   <p>by
-    {{user}}
+    {{#each user}}
+      {{username}}
+    {{/each}}
   </p>
 </div>
