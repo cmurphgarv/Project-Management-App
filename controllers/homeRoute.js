@@ -8,11 +8,15 @@ router.get("/", async (req, res) => {
     res.redirect("/login");
   } else {
     try {
+      // const dbTaskData = await Task.findAll({
+      //   include: { model: User },
+      //   where: {
+      //     user_id: req.session.user_id,
+      //   },
+      // });
+
       const dbTaskData = await Task.findAll({
         include: { model: User },
-        where: {
-          user_id: req.session.user_id,
-        },
       });
 
       let tasks = dbTaskData.map((task) => task.get({ plain: true }));
